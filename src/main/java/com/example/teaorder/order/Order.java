@@ -2,11 +2,13 @@ package com.example.teaorder.order;
 
 import com.example.teaorder.product.Product;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "orders")
 public class Order {        // 주문
@@ -23,4 +25,9 @@ public class Order {        // 주문
     // 주문 수량
     private Integer quantity;
 
+    @Builder
+    public Order(Product product, Integer quantity) {
+        this.product = product;
+        this.quantity = quantity;
+    }
 }
